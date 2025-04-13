@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculation History</title>
+</head>
+<body>
+    <h1>Calculation History</h1>
+
+    {% if operations %}
+        <ul>
+            {% for op in operations %}
+                <li>{{ op.num1 }} {{ op.operator }} {{ op.num2 }} = {{ op.result }} ({{ op.timestamp|date:"Y-m-d H:i:s" }})</li>
+            {% endfor %}
+        </ul>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Clear All Records</button>
+        </form>
+    {% else %}
+        <p>No calculations yet.</p>
+    {% endif %}
+
+    <a href="/">Go to Home</a> |
+    <a href="/about/">About</a>
+</body>
+</html>
